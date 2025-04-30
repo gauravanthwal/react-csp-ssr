@@ -1,5 +1,12 @@
-import React from 'react';
-import { hydrate } from 'react-dom';
-import App from '../components/App';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { hydrate } from "react-dom";
+import App from "../components/App";
 
-hydrate(<App />, document.getElementById('root'));
+
+hydrate(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);

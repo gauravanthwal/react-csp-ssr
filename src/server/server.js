@@ -1,5 +1,5 @@
 // src/server/server.js
-
+import { StaticRouter } from 'react-router-dom';
 import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
@@ -28,11 +28,15 @@ app.get('*', (req, res) => {
 
   // Collect styles using MUI's ServerStyleSheets
   const sheets = new ServerStyleSheets();
+  const context = {};
   const jsx = sheets.collect(
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <StaticRouter location={req.url} context={context}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </StaticRouter>
   );
+
   const reactHtml = ReactDOMServer.renderToString(jsx);
   const css = sheets.toString();
 
@@ -42,9 +46,9 @@ app.get('*', (req, res) => {
 
   // Inject styles, markup, and nonce
   html = html
+    .replace(/__NONCE__/g, nonce) 
     .replace('<!-- STYLES -->', `<style id="jss-server-side" nonce="${nonce}">${css}</style>`)
     .replace('<!-- APP -->', reactHtml)
-    .replace(/__NONCE__/g, nonce); // For any script/style tag nonce attr
 
   // Set strict CSP header
   res.setHeader(

@@ -1,16 +1,28 @@
-import React from 'react';
-import { Button, CssBaseline, Container, Typography } from '@material-ui/core';
+import React from "react";
+import {  Link } from "react-router-dom";
+import { Button, CssBaseline, Container } from "@material-ui/core";
+import Routes from "./router/routes";
+
+const Navbar = () => {
+  return (
+    <nav style={{ marginBottom: 20 }}>
+      <Button component={Link} to="/" color="primary">
+        Home
+      </Button>
+      <Button component={Link} to="/about" color="secondary">
+        About
+      </Button>
+    </nav>
+  );
+};
 
 function App() {
   return (
     <React.Fragment>
       <CssBaseline />
       <Container>
-        <h1>Hello from React 16 + MUI v4 + SSR!</h1>
-        <Typography variant="h6" gutterBottom>
-          This is a simple example of server-side rendering with Material-UI.
-        </Typography>
-        <Button variant="contained" color="primary">Click Me</Button>
+        <Navbar />
+        <Routes/>
       </Container>
     </React.Fragment>
   );
