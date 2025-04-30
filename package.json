@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.client.js && webpack --config webpack.server.js",
-    "watch:client": "webpack --watch --config webpack.client.js",
-    "watch:server": "webpack --watch --config webpack.server.js",
-    "dev:server2": "cross-env NODE_ENV=development nodemon dist/server.bundle.js",
-    "dev": "concurrently -k -n CLIENT,SERVER,NODEMON -c green,blue,yellow \"npm:watch:client\" \"npm:watch:server\" \"npm:dev:server\"",
-    "dev:server": "wait-on dist/server.bundle.js && cross-env NODE_ENV=development nodemon dist/server.bundle.js"
-  },
+  "build": "webpack --config webpack.client.js && webpack --config webpack.server.js",
+  "dev": "cross-env NODE_ENV=development nodemon dist/server.bundle.js",
+  "start": "cross-env NODE_ENV=production node dist/server.bundle.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

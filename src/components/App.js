@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, CssBaseline, Container } from '@material-ui/core';
+import { Button, CssBaseline, Container, Typography } from '@material-ui/core';
 
 function App() {
   return (
